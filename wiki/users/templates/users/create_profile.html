@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ 
+{% block content %}
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+
+<h1>Create profile</h1>
+ 
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Создать профиль</button>
+</form>
+ 
+{% endblock %}

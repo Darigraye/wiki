@@ -1,0 +1,10 @@
+<form action="{% url 'show_post_like' post.slug %}" method="post">
+    {% csrf_token %}
+
+    {% if post_is_liked %}
+    <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn btn-info">Unlike</button>
+    {% else %}
+    <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn btn-info">Like</button>
+    {% endif %}
+</form>
+<strong class="text-secondary">{{ number_likes }} Like{{ number_likes|pluralize }}</strong>

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="{% static 'articles/js/save_url_script.js' %}"></script>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>wiki::Главная страница</title>
+    {% endblock %}
+</head>
+<body>
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet"/>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+       {% if user.is_authenticated %}
+      {% if  user.profile.avatar %}
+      <a class="navbar-brand" href="{% url 'users:show_profile' user.username %}">
+      <img src="{{ user.profile.avatar.url }}" alt="Пропало изображение" width="50" height="40">
+      </a>
+      {% else %}
+      <a class="navbar-brand" href="{% url 'users:show_profile' user.username %}">
+      <img src="{% static 'articles/empty_staff.png' %}" alt="Пропало изображение" width="50" height="40">
+      </a>
+      {% endif %}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'users:password-change' %}">Изменить пароль</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'create_article' %}">Создать статью</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'display_articles' %}">Показать статьи</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:logout' %}">Выйти</a>
+        </li>
+      </ul>
+    </div>
+      {% else %}
+            {% for m in menu %}
+                <a href="{% url m.url_name %}">{{ m.title }}</a>
+             {% endfor %}
+      {% endif %}
+  </div>
+</nav>
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

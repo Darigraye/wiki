@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>wiki::Категории</title>
+    {% endblock %}
+</head>
+<body>
+
+{% block content %}
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet"/>
+
+    {% for post in posts %}
+<br><br>
+        <strong> Тема: {{ post.topic }}</strong> <br>
+        {{ post.content|linebreaks|truncatewords:50 }} <br>
+        Категория: {{ post.category.name }} <br>
+        Автор: {{ post.author.username }} <br>
+        Рейтинг статьи: {{ post.rating_article }} <br>
+        Число просмотров: {{ post.number_views }} <br>
+    {% endfor %}
+
+    {% include 'articles/base_pagination.html' %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>wiki::Просмотр статьи</title>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet"/>
+
+<br><br>
+     <strong> Тема: {{ post.topic }}</strong> <br>
+        {{ post.content|linebreaks }} <br>
+        Категория: {{ post.category.name }} <br>
+        Автор: {{ post.author.username }} <br>
+        Рейтинг статьи: {{ post.rating_article }} <br>
+        Число просмотров: {{ post.number_views }} <br>
+
+        {% if post.photo %}
+           <img src="{{ post.photo.url }}" height=100 width=100><br><br>
+        {% endif %}
+
+        {% include 'articles/post_like_element.html' %}
+{% endblock %}
+
+</body>
+</html>

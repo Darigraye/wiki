@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet"/>
+
+<h1>Profile of {{ username }}</h1>
+    email: {{ email }}
+    <br>
+    <br>
+    rating: {{ rating }}
+    <br>
+    <br>
+    {% if profile %}
+        {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" height=100 width=100><br><br>
+        {% else %}
+            Нет фото <br><br>
+        {% endif %}
+
+        {{ profile.profile_description }}
+    {% endif %}
+
+{% endblock %}

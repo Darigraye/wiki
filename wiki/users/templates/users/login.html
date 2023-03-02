@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ 
+{% block content %}
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+
+<h1>Sign in</h1>
+ 
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button>
+</form>
+ 
+{% endblock %}

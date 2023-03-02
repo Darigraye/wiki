@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Домашняя страница</title>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<link type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet"/>
+
+    Добро пожаловать на наш сайт!
+    {% include 'articles/base_show_categories.html' %}
+{% endblock %}
+</body>
+</html>
